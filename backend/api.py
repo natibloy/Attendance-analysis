@@ -57,6 +57,11 @@ def get_mysql_category():
         "status_code": 204
     }
     return {
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET'
+        },
         "results": results,
         "status_code": 200,
         "results_count": len(results)
