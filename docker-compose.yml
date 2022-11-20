@@ -2,35 +2,34 @@ version: '3'
 services:
   backend:
     image: 'natibloy/attendance-project:latest'
-    #ports: 
-      #- "5000:5000"
+    ports: 
+      - "5000:5000"
     restart: always
     env_file:
       - environmentals/.env
     depends_on:
       - mysql
-    #expose:
-      #- 5000
+    networks:
+      - general
   
   mysql:
     image: 'mysql:latest'
     env_file:
       - environmentals/.env
     restart: always
+    networks:
+      - general
 
   frontend:
     image: 'natibloy/attendance-frontend:latest'
     restart: always
-    #ports:
-      #- "3000:80"
-    #links:
-      #- backend
-  
-  nginx:
-    depends_on:
-      - backend
-      - frontend
-    image: 'natibloy/attendance-nginx:latest'
-    restart: always
     ports:
-      - '3050:80'
+      - "3000:80"
+    networks:
+      - general
+
+networks:
+  general:
+    name: my-pre-existing-network
+    external: true
+  
