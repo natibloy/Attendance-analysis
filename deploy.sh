@@ -23,7 +23,7 @@ ssh -T $machine << EOF
 	docker-compose down -v --rmi all --remove-orphans
 	docker-compose up -d
 	sleep 20
-	curl -X POST localhost:5000
+	curl -X POST localhost:3050/api
 EOF
 # if deploying to test move tests directory to test machine and run tests:
 if [ $machine == "test" ]; then
