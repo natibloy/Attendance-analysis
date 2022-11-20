@@ -1,0 +1,32 @@
+#table{
+    position: absolute;
+    max-height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#d-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    table-layout: fixed;
+    background-color: aquamarine;
+    /* width: 1562px; */
+}
+
+#table-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 400px;
+    display: block;
+    text-align: left;
+    /* width: 1562px; */
+}
+
+#table-header-row {
+    /* width: 1560px; */
+    display: block;
+    border: solid black 1px;
+}

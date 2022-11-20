@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend:
+    image: 'natibloy/attendance-project:latest'
+    ports: 
+      - "5000:5000"
+    restart: always
+    env_file:
+      - environmentals/.env
+    depends_on:
+      - mysql
+  
+  mysql:
+    image: 'mysql:latest'
+    env_file:
+      - environmentals/.env
+    restart: always

@@ -1,0 +1,48 @@
+.topnav {
+  background-color: #333;
+  height: 40px;
+  width: 100%;
+}
+
+.menu-item {
+  float: left;
+  text-align: center;
+  height: 40px;
+}
+
+.left-push {
+  padding-left: 10px;
+}
+
+.checkbox-dynamic {
+  float: left;
+}
+
+.padding-top {
+  padding-top: 10px;
+}
+
+.dynamic-search-label {
+  font-size: 15px;
+  margin-top: 11px;
+}
+
+.leftmost {
+  width: 240px;
+}
+
+.left-push-bigger{
+  padding-left: 40px;
+}
+
+.left-push-massive{
+  padding-left: 80px;
+}
+
+.rightmost{
+  width: 180px;
+  float: right;
+  text-align: center;
+  height: 40px;
+  padding-right: 5px;
+}

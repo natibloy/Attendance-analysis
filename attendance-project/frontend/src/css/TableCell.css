@@ -1,0 +1,24 @@
+.table-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: table-cell;
+    border: solid black 1px;
+    text-align: center;
+    height: 50px;
+}
+
+.reg-cell {
+    width: 160px;
+}
+
+.mail-cell {
+    width: 400px;
+}
+
+.table-header {
+    background-color: aquamarine;
+}
+
+.table-regular {
+    background-color: #ccc;
+}

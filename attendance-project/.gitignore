@@ -1,0 +1,7 @@
+**/*.env
+**/*pycache*/
+**/*.ssh/
+**/*csv*files/
+**/dc.yml
+**/build-back.sh
+**/build-front.sh
