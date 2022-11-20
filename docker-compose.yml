@@ -9,27 +9,17 @@ services:
       - environmentals/.env
     depends_on:
       - mysql
-    networks:
-      - general
   
   mysql:
     image: 'mysql:latest'
     env_file:
       - environmentals/.env
     restart: always
-    networks:
-      - general
 
   frontend:
     image: 'natibloy/attendance-frontend:latest'
     restart: always
     ports:
       - "3000:80"
-    networks:
-      - general
 
-networks:
-  general:
-    name: my-pre-existing-network
-    external: true
   
