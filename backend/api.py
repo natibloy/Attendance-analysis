@@ -113,7 +113,7 @@ def get_average():
         "status_code": 404
     }
     elif len(results) == 0: return {
-        "error": "No results",
+        "results": "No results",
         "status_code": 204
     }
     return {

@@ -33,7 +33,7 @@ if [ $machine == "test" ]; then
 	ssh -T test <<-EOF
 	cd final-project/tests/
 	bash test-back.sh
-	#bash test-front.sh
+	bash test-front.sh
 	docker-compose down -v --rmi all --remove-orphans
 	EOF
 fi
