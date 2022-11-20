@@ -20,17 +20,20 @@ rsync -zrv --delete /var/lib/jenkins/workspace/attendance-project/ $machine:/hom
 # connecting to the input machine and running multiple commands:
 ssh -T $machine << EOF
 	cd final-project/
-	bash docker-clean.sh
+	docker-compose down -v --rmi all --remove-orphans
 	docker-compose up -d
 	sleep 20
 	curl -X POST localhost:5000
 EOF
 # if deploying to test move tests directory to test machine and run tests:
 if [ $machine == "test" ]; then
-	rsync -zrv --delete /var/lib/jenkins/tests test:/home/ec2-user/final-project/
+	# copy the tests directory to test machine:
+	rsync -zrv --delete /var/lib/jenkins/tests/* test:/home/ec2-user/final-project/tests/
+	# run tests on test machine:
 	ssh -T test <<-EOF
 	cd final-project/tests/
 	bash test-back.sh
 	bash test-front.sh
+	docker-compose down -v --rmi all --remove-orphans
 	EOF
 fi

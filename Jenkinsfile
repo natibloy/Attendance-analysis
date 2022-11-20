@@ -33,7 +33,7 @@ pipeline {
         }
 		stage('Clean') {
 			steps {
-				sh "docker system prune -a -f"
+				sh "docker image prune -a -f"
 			}
 		}
 		stage('Test') {
