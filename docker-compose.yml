@@ -20,12 +20,16 @@ services:
 
   frontend:
     image: 'natibloy/attendance-frontend:latest'
+    restart: always
     #ports:
       #- "3000:80"
     #links:
       #- backend
   
   nginx:
+    depends_on:
+      - backend
+      - frontend
     image: 'natibloy/attendance-nginx:latest'
     restart: always
     ports:
