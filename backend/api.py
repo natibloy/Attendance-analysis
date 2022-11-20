@@ -1,5 +1,5 @@
 from flask import Flask, request # flask requires installation
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from attendance import post_api, get_api, get_specific_api, get_avg_api, delete_api
 from dotenv import load_dotenv
 import os
@@ -39,7 +39,6 @@ def insert_csv():
     }
 
 @app.route('/', methods=['GET'])
-@cross_origin()
 def get_mysql_category():
     categories = category_checker(request.args.get('categories'))
     if not categories: return {
@@ -57,11 +56,6 @@ def get_mysql_category():
         "status_code": 204
     }
     return {
-        'headers': {
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET'
-        },
         "results": results,
         "status_code": 200,
         "results_count": len(results)
