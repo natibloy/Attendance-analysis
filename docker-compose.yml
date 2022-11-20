@@ -2,12 +2,15 @@ version: '3'
 services:
   backend:
     image: 'natibloy/attendance-project:latest'
+    ports: 
+      - "5000:5000"
     restart: always
     env_file:
       - environmentals/.env
     depends_on:
       - mysql
     expose:
+      - 5000
   
   mysql:
     image: 'mysql:latest'
@@ -17,8 +20,7 @@ services:
 
   frontend:
     image: 'natibloy/attendance-frontend:latest'
-
-  nginx:
-    image: 'natibloy/attendance-nginx:latest'
     ports:
-      - '3050:80'
+      - "3000:80"
+    links:
+      - backend
