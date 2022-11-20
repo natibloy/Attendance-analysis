@@ -23,21 +23,17 @@ ssh -T $machine << EOF
 	docker-compose down -v --rmi all --remove-orphans
 	docker-compose up -d
 	sleep 20
-	
+	curl -X POST localhost:3050/api
 EOF
 # if deploying to test move tests directory to test machine and run tests:
 if [ $machine == "test" ]; then
 	# copy the tests directory to test machine:
-	#rsync -zrv --delete /var/lib/jenkins/tests/* test:/home/ec2-user/final-project/tests/
+	rsync -zrv --delete /var/lib/jenkins/tests/* test:/home/ec2-user/final-project/tests/
 	# run tests on test machine:
 	ssh -T test <<-EOF
 	cd final-project/tests/
-	
+	#bash test-back.sh
+	#bash test-front.sh
 	docker-compose down -v --rmi all --remove-orphans
 	EOF
 fi
-
-#curl -X POST localhost:3050/api
-
-#bash test-back.sh
-#bash test-front.sh

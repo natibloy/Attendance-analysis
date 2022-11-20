@@ -7,7 +7,6 @@ services:
       - environmentals/.env
     depends_on:
       - mysql
-    expose:
   
   mysql:
     image: 'mysql:latest'
