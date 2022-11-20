@@ -19,8 +19,8 @@ pipeline {
             steps {
                 script {
                     backDockerImage = docker.build("$backRegistry:${env.BUILD_ID}", "./backend")
-                    frontDockerImage = docker.build("$frontRegistry:${env.BUILD_ID}", "./frontend")
-                    nginxDockerImage = docker.build("$nginxRegistry:${env.BUILD_ID}", "./nginx")
+                    //frontDockerImage = docker.build("$frontRegistry:${env.BUILD_ID}", "./frontend")
+                    //nginxDockerImage = docker.build("$nginxRegistry:${env.BUILD_ID}", "./nginx")
                 }
             }
         }
@@ -29,8 +29,8 @@ pipeline {
                 script {
                     docker.withRegistry('', registryCredential) {
                         backDockerImage.push("latest")
-                        frontDockerImage.push("latest")
-                        nginxDockerImage.push("latest")
+                        //frontDockerImage.push("latest")
+                        //nginxDockerImage.push("latest")
                     }
                 }
             }
