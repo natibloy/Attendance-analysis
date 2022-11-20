@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: 'amitlubin/attendance-backend:latest'
+    image: 'natibloy/attendance-project:latest'
     ports: 
       - "5000:5000"
     restart: always
@@ -17,7 +17,7 @@ services:
     restart: always
 
   frontend:
-    image: 'amitlubin/attendance-frontend:latest'
+    image: 'natibloy/attendance-frontend:latest'
     depends_on:
       - backend
     ports:

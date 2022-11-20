@@ -1,8 +1,10 @@
 pipeline {
     environment {
-        registry = "natibloy/attendance-project"
+        backRegistry = "natibloy/attendance-project"
+        frontRegistry = "natibloy/attendance-frontend"
 		registryCredential = 'docker-hub'
-		dockerImage = ''
+		backDockerImage = ''
+        frontDockerImage = ''
     }
     agent any
     stages {
@@ -14,7 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("$registry:${env.BUILD_ID}", "./backend")
+                    backDockerImage = docker.build("$backRegistry:${env.BUILD_ID}", "./backend")
+                    frontDockerImage = docker.build("$frontRegistry:${env.BUILD_ID}", "./frontend")
                 }
             }
         }
@@ -22,14 +25,15 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
-                        dockerImage.push("latest")
+                        backDockerImage.push("latest")
+                        frontDockerImage.push("latest")
                     }
                 }
             }
         }
 		stage('Clean') {
 			steps {
-				sh "docker rmi $registry:$BUILD_NUMBER"
+				sh "docker system prune -a -f"
 			}
 		}
 		stage('Test') {
