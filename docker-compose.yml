@@ -9,6 +9,8 @@ services:
       - environmentals/.env
     depends_on:
       - mysql
+    expose:
+      - 5000
   
   mysql:
     image: 'mysql:latest'
