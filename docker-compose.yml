@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: 'natibloy/attendance-project:latest'
+    image: 'amitlubin/attendance-backend:latest'
     ports: 
       - "5000:5000"
     restart: always
@@ -15,3 +15,10 @@ services:
     env_file:
       - environmentals/.env
     restart: always
+
+  frontend:
+    image: 'amitlubin/attendance-frontend:latest'
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
