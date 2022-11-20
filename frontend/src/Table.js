@@ -55,14 +55,12 @@ const Table = props => {
     const categories = checkCategories(props.categories);
     if (categories.length === 0) return;
 
-    //setTableWidth(categories);
-
     return (
         <div id="table">
             <table id="d-table" style={setTableWidth(categories, false)}>
                 <thead id="table-header-row" style={setTableWidth(categories, true)}>
                     <tr >
-                        <TableHeader categories={categories} />
+                        <TableHeader categories={categories} data={props.data} changeSortedState={props.changeSortedState}/>
                     </tr>
                 </thead>
                 <tbody id="table-body" style={setTableWidth(categories, false)}>

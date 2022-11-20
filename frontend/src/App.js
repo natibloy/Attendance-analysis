@@ -48,6 +48,10 @@ class App extends Component {
         }});
     }
 
+    changeSortedState = (newDataValue) => {
+        this.setState({ data: newDataValue });
+    }
+
     async componentDidMount(){
         await fetch('http://localhost:5000/')
             .then(res => res.json())
@@ -63,7 +67,7 @@ class App extends Component {
                     <Menu changeState={this.changeState} changeAvgState={this.changeAvgState}/>
                 </div>
                 <div className="table">
-                    <Table categories={this.state.categories} data={this.state.data} />
+                    <Table categories={this.state.categories} data={this.state.data} changeSortedState={this.changeSortedState}/>
                 </div>
             </div>
         );

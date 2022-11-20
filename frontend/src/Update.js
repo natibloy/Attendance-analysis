@@ -16,7 +16,7 @@ class Update extends Component {
         this.setState({ icon: "waiting" });
         
         const requestOptions = { method: 'POST' };
-        await fetch('http://localhost:5000/', requestOptions)
+        await fetch('http://35.169.96.11:5000/', requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ icon: data.results }));
         

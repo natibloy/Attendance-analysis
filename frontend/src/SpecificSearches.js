@@ -63,7 +63,7 @@ const SpecificSearches = props => {
         if (document.getElementById('dynamic-checkbox').checked)
             dynamic = '&dynamic';
 
-        await fetch('http://localhost:5000/specific?' + categoriesString + inputType + inputText + dynamic)
+        await fetch('http://35.169.96.11:5000/specific?' + categoriesString + inputType + inputText + dynamic)
                 .then(res => res.json())
                 .then(newData => {
                     props.changeState(newData.results, categories.all, categories.specific);

@@ -40,7 +40,7 @@ const Searches = props => {
             categoriesString = getCategoriesString(categoriesString, categories.specific);
         }
             
-        await fetch('http://localhost:5000/' + categoriesString)
+        await fetch('http://35.169.96.11:5000/' + categoriesString)
                 .then(res => res.json())
                 .then(newData => {
                     props.changeState(newData.results, categories.all, categories.specific);
