@@ -1,11 +1,19 @@
-FROM node:19-alpine3.15
+FROM node:19-alpine3.15 as builder
 
 WORKDIR /app
 
 COPY package.json .
-RUN npm install
+COPY package-lock.json .
+RUN npm ci
 COPY . .
-CMD [ "npm", "run", "start" ]
+RUN npm run build --prod
 
 
 
+FROM nginx:latest
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+COPY --from=builder /app/build .
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

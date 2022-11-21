@@ -53,7 +53,7 @@ class App extends Component {
     }
 
     async componentDidMount(){
-        await fetch('http://localhost:5000/')
+        await fetch('http://35.169.96.11:5000/')
             .then(res => res.json())
             .then(newData => {;
                 this.setState({ data: newData.results });
