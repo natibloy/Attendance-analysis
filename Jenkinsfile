@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    backDockerImage = docker.build("$backRegistry:${env.BUILD_ID}", "./backend")
+                    backDockerImage = docker.build("$backRegistry:${env.BUILD_ID}:latest", "./backend")
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
-                        backDockerImage.push("latest")
+                        backDockerImage.push()
                     }
                 }
             }
@@ -44,5 +44,12 @@ pipeline {
                     bash deploy.sh prod""".trim()
 			}
 		}	
+    }
+    post {
+        // clean workspace after build
+        always {
+            cleanWs(deleteDirs: true,
+                    patterns: [[pattern: 'environmentals', type: 'EXCLUDE']])
+        }
     }
 }

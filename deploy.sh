@@ -20,6 +20,8 @@ rsync -zrv --delete /var/lib/jenkins/workspace/attendance-project/ $machine:/hom
 # connecting to the input machine and running multiple commands:
 ssh -T $machine << EOF
 	cd final-project/
+	sed -i '/^REACT_APP_PUBLIC_IP/d' ./environmentals/.env
+	echo "REACT_APP_PUBLIC_IP=\"http://$(curl http://checkip.amazonaws.com):5000/\"" >> ./environmentals/.env
 	docker-compose down -v --rmi all --remove-orphans
 	docker-compose up -d
 	sleep 20
@@ -32,8 +34,8 @@ if [ $machine == "test" ]; then
 	# run tests on test machine:
 	ssh -T test <<-EOF
 	cd final-project/tests/
-	bash test-back.sh
-	bash test-front.sh
+	bash -ex test-back.sh
+	bash -ex test-front.sh
 	docker-compose down -v --rmi all --remove-orphans
 	EOF
 fi
